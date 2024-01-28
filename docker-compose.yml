@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  postgres-gymmem:
+    image: postgres:latest
+    environment:
+      POSTGRES_HOSTNAME: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+
+  spring-boot-app-gymmem:
+    image: gymmem:latest
+    depends_on:
+      - postgres-gymmem
+    ports:
+      - "8080:8080"
