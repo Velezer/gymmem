@@ -10,6 +10,8 @@ services:
       POSTGRES_PASSWORD: postgres
     ports:
       - "5432:5432"
+    networks:
+      - my_network
 
   spring-boot-app:
     image: spring-boot-app:latest
@@ -17,3 +19,9 @@ services:
       - postgres
     ports:
       - "8080:8080"
+    networks:
+      - my_network
+
+networks:
+  my_network:
+    driver: bridge
