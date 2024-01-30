@@ -79,7 +79,7 @@ Content-Type: application/json
 }
 ###
 ###
-@token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzUwNjAsImV4cCI6MTcwNjYzNjg2MH0.JdQ4veE6SX56fW8bMjEFwrjlTrrzVDohA-3QzNPY9QU
+@token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2Mzk2MjUsImV4cCI6MTcwNjY0MTQyNX0.CNjmQ8MovfyALBfpy9Et02PIOknTRAN6THIihcn0CfM
 ###
 GET {{baseUrl}}/api/v1/user/me HTTP/1.1
 Authorization: Bearer {{token}}
@@ -178,3 +178,4 @@ Authorization: Bearer {{token}}
 # Content-Type: application/json
 
 # {"sdas":{"sadas":"sdas"}}
+GET ws://localhost:8081/ws

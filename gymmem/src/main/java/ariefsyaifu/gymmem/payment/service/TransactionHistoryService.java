@@ -44,7 +44,6 @@ public class TransactionHistoryService {
         this.otpClient = otpClient;
     }
 
-    private KafkaTemplate<String, String> kafkaTemplate;
     private CreatedPaymentProducer createdPaymentProducer;
     private TransactionHistoryDao transactionHistoryDao;
     private OtpClient otpClient;
@@ -85,7 +84,8 @@ public class TransactionHistoryService {
                 params.cvv,
                 params.expiredDate,
                 params.cardHolderName,
-                subscription.amount);
+                subscription.amount,
+                th.createdAt);
         return TransactionHistoryDto.valueOf(th);
     }
 
