@@ -36,7 +36,7 @@ public class TransactionHistory {
     public Status status;
 
     public enum Status {
-        PENDING,
+        PROCESSING,
         PAID,
         FAILED
     }

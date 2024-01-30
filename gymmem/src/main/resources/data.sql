@@ -55,7 +55,7 @@ CREATE TABLE gym_schema.transaction_history (
 	subscription_id varchar(255) NOT NULL,
 	user_id varchar(255) NOT NULL,
 	CONSTRAINT transaction_history_pkey PRIMARY KEY (id),
-	CONSTRAINT transaction_history_status_check CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'PAID'::character varying, 'FAILED'::character varying])::text[])))
+	CONSTRAINT transaction_history_status_check CHECK (((status)::text = ANY ((ARRAY['PROCESSING'::character varying, 'PAID'::character varying, 'FAILED'::character varying])::text[])))
 );
 
 

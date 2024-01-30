@@ -26,8 +26,8 @@ Content-Type: application/json
     "type": "VERIFY_EMAIL"
 }
 ###
-@otpIdVerif=7b7aae1c-df36-4073-99b9-9be13ced9fbb
-@otpValueVerif=4605
+@otpIdVerif=28cb2a0a-38c6-4d77-9854-d0ef4aff8b2b
+@otpValueVerif=7371
 ###
 PUT {{baseUrl}}/api/v1/auth/verification HTTP/1.1
 Content-Type: application/json
@@ -52,8 +52,8 @@ POST {{baseUrl}}/api/v1/auth/refresh HTTP/1.1
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6IjY3ODg1NTc5LWE5ZDYtNDEzYy04NjI4LTIyNTAzZDFhNjIxZSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MTcxMjEsImV4cCI6MTcwNjYxODkyMX0.s6jL1jGiq89YxilzYoRv2pf_MnXtNJyB_mCYU_jBs1s",
-  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6IjY3ODg1NTc5LWE5ZDYtNDEzYy04NjI4LTIyNTAzZDFhNjIxZSIsInN1YiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SmxiV0ZwYkNJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWkNJNklqWTNPRGcxTlRjNUxXRTVaRFl0TkRFell5MDROakk0TFRJeU5UQXpaREZoTmpJeFpTSXNJbk4xWWlJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWVhRaU9qRTNNRFkyTVRjeE1qRXNJbVY0Y0NJNk1UY3dOall4T0RreU1YMC5zNmpMMWpHaXE4OVl4aWx6WW9SdjJwZl9Nblh0Tkp5Ql9tQ1lVX2pCczFzIiwiaWF0IjoxNzA2NjE3MTIxLCJleHAiOjE3MDY2MTg5MjF9.KMm0LJNJ4TPONvkQYw-RPRRRciKhF-4PkbvMXTCxRo4"
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzA3OTUsImV4cCI6MTcwNjYzMjU5NX0.R_Uuog9Q49CMVRwCVY2mALhsrN2VsJRbKEhYRHREh9A",
+  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SW1aa01qZGpNbUUwTFdNMU1URXRORGt3TUMxaE5qY3lMVGhqTlRNMU1USTJZamd6WVNJc0ltVnRZV2xzSWpvaVlYTjJaV3hsZW1WeVFHZHRZV2xzTG1OdmJTSXNJbk4xWWlJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWVhRaU9qRTNNRFkyTXpBM09UVXNJbVY0Y0NJNk1UY3dOall6TWpVNU5YMC5SX1V1b2c5UTQ5Q01WUndDVlkybUFMaHNyTjJWc0pSYktFaFlSSFJFaDlBIiwiaWF0IjoxNzA2NjMwNzk1LCJleHAiOjE3MDY2MzI1OTV9.qp1srdF0Uvl0Mzm6c8PvEZqRTMKufZ95pEzE3_89woA"
 }
 ###
 POST {{baseUrl}}/api/v1/otp HTTP/1.1
@@ -80,12 +80,14 @@ Content-Type: application/json
 ###
 
 ###
-@token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY3ODg1NTc5LWE5ZDYtNDEzYy04NjI4LTIyNTAzZDFhNjIxZSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MTg5OTIsImV4cCI6MTcwNjYyMDc5Mn0.m45OMbmUAK0-jj56LoFnMIG1RnLDCvdD37qZckfTIY0
+@token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzA4MDQsImV4cCI6MTcwNjYzMjYwNH0.SSs5z2LiUNDUyTAWnkD_YAnzMjgrAvo-LlBTNte5xwY
 GET {{baseUrl}}/api/v1/user/me HTTP/1.1
 Authorization: Bearer {{token}}
 ###
 GET {{baseUrl}}/api/v1/user/me/creditCard HTTP/1.1
 Authorization: Bearer {{token}}
+###
+@creditCardId=d11691ea-b110-4611-8355-a93bf2243394
 ###
 PUT {{baseUrl}}/api/v1/user/me HTTP/1.1
 Content-Type: application/json
@@ -114,7 +116,7 @@ Authorization: Bearer {{token}}
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1
 Authorization: Bearer {{token}}
 ###
-@subscriptionId=92e8862d-5bbe-4449-a493-0518e8f0af3d
+@subscriptionId=5f36796e-47fe-4f87-a9c5-fc40564cfe61
 ###
 PATCH {{baseUrl}}/api/v1/subscription/{{subscriptionId}} HTTP/1.1
 Authorization: Bearer {{token}}
@@ -136,7 +138,11 @@ Authorization: Bearer {{token}}
 
 {
     "subscriptionId": "{{subscriptionId}}",
-    "creditCardId": "a1116cfb-7ecb-4667-b5b5-5572673db7f9"
+    "creditCardId": "{{creditCardId}}",
+    "creditCardNumber":"13823982",
+    "cvv":"123",
+    "expiredDate":"09/2025",
+    "cardHolderName":"arief"
 }
 ###
 GET {{baseUrl}}/api/v1/payment/transaction/history HTTP/1.1
@@ -150,9 +156,9 @@ Content-Type: application/json
     "type": "PAYMENT"
 }
 ###
-@transactionHistoryId=f2a60bc3-fac0-4328-81a3-26b7a7b17387
-@otpIdPayment=231a39f8-f8b0-4d2e-8a22-5c19c1bc1af6
-@otpValuePayment=8636
+@transactionHistoryId=1bb72543-27e4-476f-942f-1ec3566ae732
+@otpIdPayment=8638fed3-7a69-4d8f-889f-78bb3ab3e173
+@otpValuePayment=7695
 ###
 PATCH {{baseUrl}}/api/v1/payment/transaction/history/{{transactionHistoryId}} HTTP/1.1
 Authorization: Bearer {{token}}

@@ -12,4 +12,6 @@ public interface CreditCardRepository extends JpaRepository<CreditCard, String> 
 
     List<CreditCard> findAllByUser_Id(String userId);
 
+    CreditCard findByIdAndUser_Id(String creditCardId, String userId);
+
 }

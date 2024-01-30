@@ -48,8 +48,20 @@ public class UserService {
         userRepository.save(user);
     }
 
-    public boolean validateCreditCard(String userId, String creditCardId) {
-        return creditCardRepository.existsByIdAndUser_Id(creditCardId, userId);
+    public boolean validateCreditCard(String userId, String creditCardId,
+            String creditCardNumber,
+            String cvv,
+            String expiredDate,
+            String cardHolderName) {
+        String cc = creditCardNumber +
+                cvv +
+                expiredDate +
+                cardHolderName;
+        CreditCard creditCard = creditCardRepository.findByIdAndUser_Id(creditCardId, userId);
+        if (creditCard == null) {
+            return false;
+        }
+        return BCrypt.checkpw(cc, creditCard.encrypted);
     }
 
     public List<ViewCreditCardDto> getMeCreditCard(Claims c) {

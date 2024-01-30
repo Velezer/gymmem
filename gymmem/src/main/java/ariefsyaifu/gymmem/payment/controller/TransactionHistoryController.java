@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import ariefsyaifu.gymmem.payment.dto.CreatePaymentRequestBody;
-import ariefsyaifu.gymmem.payment.dto.CreatePaymentResponse;
 import ariefsyaifu.gymmem.payment.dto.PatchPaymentRequestBody;
+import ariefsyaifu.gymmem.payment.dto.TransactionHistoryDto;
 import ariefsyaifu.gymmem.payment.service.TransactionHistoryService;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.http.HttpServletRequest;
@@ -39,7 +39,7 @@ public class TransactionHistoryController {
             @Valid @RequestBody CreatePaymentRequestBody params,
             HttpServletRequest request) {
         Claims claims = (Claims) request.getAttribute("claims");
-        CreatePaymentResponse r = transactionHistoryService.createPayment(params, claims);
+        TransactionHistoryDto r = transactionHistoryService.createPayment(params, claims);
         return ResponseEntity.ok(r);
     }
 
