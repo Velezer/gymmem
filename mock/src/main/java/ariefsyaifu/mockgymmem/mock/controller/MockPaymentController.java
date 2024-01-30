@@ -1,6 +1,7 @@
 package ariefsyaifu.mockgymmem.mock.controller;
 
 import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/mock/payment")
 public class MockPaymentController {
+    private DateTimeFormatter formatter = DateTimeFormatter.ISO_INSTANT;
 
     @PostMapping("/r3")
     public ResponseEntity<Map<String, Object>> r3(
@@ -19,7 +21,7 @@ public class MockPaymentController {
         Thread.sleep(1000);
         return ResponseEntity.ok(Map.of(
                 "status", "SUCCESS",
-                "timestamp", Instant.now(),
+                "timestamp", formatter.format(Instant.now()),
                 "params", params));
     }
 
@@ -29,7 +31,7 @@ public class MockPaymentController {
         Thread.sleep(2000);
         return ResponseEntity.ok(Map.of(
                 "status", "SUCCESS",
-                "timestamp", Instant.now(),
+                "timestamp", formatter.format(Instant.now()),
                 "params", params));
     }
 
@@ -39,7 +41,7 @@ public class MockPaymentController {
         Thread.sleep(3000);
         return ResponseEntity.ok(Map.of(
                 "status", "SUCCESS",
-                "timestamp", Instant.now(),
+                "timestamp", formatter.format(Instant.now()),
                 "params", params));
     }
 
