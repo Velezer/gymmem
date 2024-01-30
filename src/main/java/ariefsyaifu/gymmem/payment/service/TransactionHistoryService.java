@@ -5,12 +5,14 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
 import ariefsyaifu.gymmem.client.OtpClient;
 import ariefsyaifu.gymmem.otp.model.Otp;
 import ariefsyaifu.gymmem.payment.client.SubscriptionClient;
 import ariefsyaifu.gymmem.payment.client.UserClient;
+import ariefsyaifu.gymmem.payment.dao.TransactionHistoryDao;
 import ariefsyaifu.gymmem.payment.dto.CreatePaymentRequestBody;
 import ariefsyaifu.gymmem.payment.dto.CreatePaymentResponse;
 import ariefsyaifu.gymmem.payment.dto.PatchPaymentRequestBody;
@@ -26,15 +28,18 @@ public class TransactionHistoryService {
 
     public TransactionHistoryService(
             TransactionHistoryRepository transactionHistoryRepository,
+            TransactionHistoryDao transactionHistoryDao,
             UserClient userClient,
             SubscriptionClient subscriptionClient,
             OtpClient otpClient) {
         this.transactionHistoryRepository = transactionHistoryRepository;
+        this.transactionHistoryDao = transactionHistoryDao;
         this.userClient = userClient;
         this.subscriptionClient = subscriptionClient;
         this.otpClient = otpClient;
     }
 
+    private TransactionHistoryDao transactionHistoryDao;
     private OtpClient otpClient;
     private SubscriptionClient subscriptionClient;
     private UserClient userClient;
@@ -72,15 +77,23 @@ public class TransactionHistoryService {
         TransactionHistory th = transactionHistoryRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "PENDING_PAYMENT_NOT_FOUND"));
 
+        if (!th.status.equals(TransactionHistory.Status.PENDING)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "PAYMENT_NOT_PENDING");
+        }
+
         boolean isValid = otpClient.validateOtp(params.otpId, email, params.otpValue, Otp.Type.PAYMENT);
         if (!isValid) {
-            th.status = TransactionHistory.Status.FAILED;
-            transactionHistoryRepository.save(th);
+            transactionHistoryDao.fail(th.id);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "OTP_INVALID");
         }
 
-        th.status = TransactionHistory.Status.PAID;
-        transactionHistoryRepository.save(th);
+        boolean isAmountValid = th.amount.compareTo(params.amount) == 0;
+        if (!isAmountValid) {
+            transactionHistoryDao.fail(th.id);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AMOUNT_INVALID");
+        }
+
+        transactionHistoryDao.paid(th.id);
 
         subscriptionClient.paid(th.subscriptionId);
     }

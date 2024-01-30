@@ -1,5 +1,6 @@
 package ariefsyaifu.gymmem.subscription.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
 
+import ariefsyaifu.gymmem.subscription.dto.subscription.PatchSubscriptionRequestBody;
 import ariefsyaifu.gymmem.subscription.dto.subscription.SubscribeRequestBody;
 import ariefsyaifu.gymmem.subscription.dto.subscription.ViewSubscriptionDto;
 import ariefsyaifu.gymmem.subscription.model.Product;
@@ -72,7 +74,7 @@ public class SubscriptionService {
                 .toList();
     }
 
-    public void patchSubscription(String id, Claims claims) {
+    public void patchSubscription(String id, PatchSubscriptionRequestBody params, Claims claims) {
         Subscription s = subscriptionRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "SUBSCRIPTION_NOT_EXISTS"));
         String userId = claims.get("id", String.class);
@@ -80,9 +82,12 @@ public class SubscriptionService {
         if (!s.userId.equals(userId)) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
+        if (!s.status.equals(Subscription.Status.PENDING)) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "STATUS_MUST_BE_PENDING");
+        }
 
-        s.remainingTimesOfMeeting += s.product.timesOfMeeting;
-        s.amount = s.amount.add(s.product.price);
+        s.remainingTimesOfMeeting = s.product.timesOfMeeting * params.qty;
+        s.amount = s.product.price.multiply(BigDecimal.valueOf(params.qty));
         subscriptionRepository.save(s);
     }
 

@@ -64,8 +64,8 @@ Content-Type: application/json
     "type": "RESET_PASSWORD"
 }
 ###
-@otpIdReset=da44debc-c72c-4b77-ac4b-6424bed81f17
-@otpValueReset=2065
+@otpIdReset=297391f6-483e-459d-bfa8-2517755d13a6
+@otpValueReset=1542
 ###
 PATCH {{baseUrl}}/api/v1/auth/reset HTTP/1.1
 Content-Type: application/json
@@ -80,7 +80,7 @@ Content-Type: application/json
 ###
 
 ###
-@token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6IjY3ODg1NTc5LWE5ZDYtNDEzYy04NjI4LTIyNTAzZDFhNjIxZSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MTcxMjEsImV4cCI6MTcwNjYxODkyMX0.s6jL1jGiq89YxilzYoRv2pf_MnXtNJyB_mCYU_jBs1s
+@token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjY3ODg1NTc5LWE5ZDYtNDEzYy04NjI4LTIyNTAzZDFhNjIxZSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MTg5OTIsImV4cCI6MTcwNjYyMDc5Mn0.m45OMbmUAK0-jj56LoFnMIG1RnLDCvdD37qZckfTIY0
 GET {{baseUrl}}/api/v1/user/me HTTP/1.1
 Authorization: Bearer {{token}}
 ###
@@ -101,7 +101,7 @@ GET {{baseUrl}}/api/v1/product HTTP/1.1
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1
 Authorization: Bearer {{token}}
 ###
-@productId=da44debc-c72c-4b77-ac4b-6424bed81f17
+@productId=cb55debc-c72c-4b77-ac4b-6424bed81f11
 ###
 POST {{baseUrl}}/api/v1/subscription HTTP/1.1
 Content-Type: application/json
@@ -114,10 +114,15 @@ Authorization: Bearer {{token}}
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1
 Authorization: Bearer {{token}}
 ###
-@subscriptionId=b557cacf-a3d3-42ac-9ea9-bded7da4e676
+@subscriptionId=92e8862d-5bbe-4449-a493-0518e8f0af3d
 ###
 PATCH {{baseUrl}}/api/v1/subscription/{{subscriptionId}} HTTP/1.1
 Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "qty": 5
+}
 ###
 DELETE {{baseUrl}}/api/v1/subscription/{{subscriptionId}} HTTP/1.1
 Authorization: Bearer {{token}}
@@ -145,9 +150,9 @@ Content-Type: application/json
     "type": "PAYMENT"
 }
 ###
-@transactionHistoryId=63de5635-1c4b-4dec-ab33-ded3f9602de4
-@otpIdPayment=977da3ff-8c33-48a8-945c-88f2ed5396a8
-@otpValuePayment=6267
+@transactionHistoryId=f2a60bc3-fac0-4328-81a3-26b7a7b17387
+@otpIdPayment=231a39f8-f8b0-4d2e-8a22-5c19c1bc1af6
+@otpValuePayment=8636
 ###
 PATCH {{baseUrl}}/api/v1/payment/transaction/history/{{transactionHistoryId}} HTTP/1.1
 Authorization: Bearer {{token}}
@@ -155,8 +160,8 @@ Content-Type: application/json
 
 {
     "otpId": "{{otpIdPayment}}",
-    "otpValue": "{{otpValuePayment}}"
-
+    "otpValue": "{{otpValuePayment}}",
+    "amount": 2000000
 }
 ###
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1

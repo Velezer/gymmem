@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ariefsyaifu.gymmem.subscription.dto.subscription.PatchSubscriptionRequestBody;
 import ariefsyaifu.gymmem.subscription.dto.subscription.SubscribeRequestBody;
 import ariefsyaifu.gymmem.subscription.service.SubscriptionService;
 import io.jsonwebtoken.Claims;
@@ -45,9 +46,10 @@ public class SubscriptionController {
     @PatchMapping("/{id}")
     public ResponseEntity<Object> patchSubscription(
             @PathVariable String id,
+            @Valid @RequestBody PatchSubscriptionRequestBody params,
             HttpServletRequest request) {
         Claims claims = (Claims) request.getAttribute("claims");
-        subscriptionService.patchSubscription(id, claims);
+        subscriptionService.patchSubscription(id, params,claims);
         return ResponseEntity.noContent().build();
     }
 
