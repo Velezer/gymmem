@@ -49,7 +49,7 @@ public class CreatedPaymentConsumer {
             throw new RuntimeException("amount invalid");
         }
 
-        String r3 = RestClient.builder().baseUrl("http://localhost:8082").build().post()
+        String r3 = RestClient.builder().baseUrl("http://localhost:8082/api/v1/mock/payment/r3").build().post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Map.of(
                         "creditCardNumber", creditCardNumber,
@@ -57,7 +57,7 @@ public class CreatedPaymentConsumer {
                 .retrieve()
                 .body(String.class);
         logger.info("r3={}", r3);
-        String r4 = RestClient.builder().baseUrl("http://localhost:8082").build().post()
+        String r4 = RestClient.builder().baseUrl("http://localhost:8082/api/v1/mock/payment/r4").build().post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Map.of(
                         "creditCardNumber", creditCardNumber,
@@ -66,7 +66,7 @@ public class CreatedPaymentConsumer {
                 .body(String.class);
 
         logger.info("r4={}", r4);
-        String r5 = RestClient.builder().baseUrl("http://localhost:8082").build().post()
+        String r5 = RestClient.builder().baseUrl("http://localhost:8082/api/v1/mock/payment/r5").build().post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Map.of(
                         "creditCardNumber", creditCardNumber,
