@@ -1,5 +1,7 @@
 package ariefsyaifu.gymmem.payment.service;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
@@ -12,6 +14,7 @@ import ariefsyaifu.gymmem.payment.client.UserClient;
 import ariefsyaifu.gymmem.payment.dto.CreatePaymentRequestBody;
 import ariefsyaifu.gymmem.payment.dto.CreatePaymentResponse;
 import ariefsyaifu.gymmem.payment.dto.PatchPaymentRequestBody;
+import ariefsyaifu.gymmem.payment.dto.TransactionHistoryDto;
 import ariefsyaifu.gymmem.payment.model.TransactionHistory;
 import ariefsyaifu.gymmem.payment.repository.TransactionHistoryRepository;
 import ariefsyaifu.gymmem.subscription.model.Product;
@@ -80,6 +83,14 @@ public class TransactionHistoryService {
         transactionHistoryRepository.save(th);
 
         subscriptionClient.paid(th.subscriptionId);
+    }
+
+    public List<TransactionHistoryDto> getPayments(Claims claims) {
+        String userId = claims.get("id", String.class);
+        return transactionHistoryRepository.findAllByUserId(userId).stream()
+                .map(th -> TransactionHistoryDto.valueOf(th))
+                .toList();
+
     }
 
 }

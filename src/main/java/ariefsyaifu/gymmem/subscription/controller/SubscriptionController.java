@@ -29,9 +29,9 @@ public class SubscriptionController {
     private SubscriptionService subscriptionService;
 
     @GetMapping
-    public ResponseEntity<Object> getSubscription(HttpServletRequest request) {
+    public ResponseEntity<Object> getSubscriptions(HttpServletRequest request) {
         Claims claims = (Claims) request.getAttribute("claims");
-        return ResponseEntity.ok(subscriptionService.getSubscription(claims));
+        return ResponseEntity.ok(subscriptionService.getSubscriptions(claims));
     }
 
     @PostMapping

@@ -1,6 +1,7 @@
 package ariefsyaifu.gymmem.payment.controller;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,6 +26,13 @@ public class TransactionHistoryController {
     }
 
     private TransactionHistoryService transactionHistoryService;
+
+    @GetMapping
+    public ResponseEntity<Object> getPayments(
+            HttpServletRequest request) {
+        Claims claims = (Claims) request.getAttribute("claims");
+        return ResponseEntity.ok(transactionHistoryService.getPayments(claims));
+    }
 
     @PostMapping
     public ResponseEntity<Object> createPayment(

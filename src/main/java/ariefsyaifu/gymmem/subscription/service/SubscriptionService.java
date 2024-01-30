@@ -63,7 +63,7 @@ public class SubscriptionService {
         subscriptionRepository.delete(s);
     }
 
-    public List<ViewSubscriptionDto> getSubscription(Claims claims) {
+    public List<ViewSubscriptionDto> getSubscriptions(Claims claims) {
         String userId = claims.get("id", String.class);
 
         return subscriptionRepository.findAllByUserId(userId)

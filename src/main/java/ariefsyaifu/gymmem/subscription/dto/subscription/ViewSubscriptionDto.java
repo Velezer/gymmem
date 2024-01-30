@@ -1,5 +1,7 @@
 package ariefsyaifu.gymmem.subscription.dto.subscription;
 
+import java.math.BigDecimal;
+
 import ariefsyaifu.gymmem.subscription.model.Subscription;
 
 public class ViewSubscriptionDto {
@@ -12,6 +14,8 @@ public class ViewSubscriptionDto {
 
     public Integer remainingTimesOfMeeting;
 
+    public BigDecimal amount;
+
     public Subscription.Status status;
 
     public static ViewSubscriptionDto valueOf(Subscription s) {
@@ -20,6 +24,7 @@ public class ViewSubscriptionDto {
         dto.userId = s.userId;
         dto.productId = s.product.id;
         dto.remainingTimesOfMeeting = s.remainingTimesOfMeeting;
+        dto.amount = s.amount;
         dto.status = s.status;
         return dto;
     }
