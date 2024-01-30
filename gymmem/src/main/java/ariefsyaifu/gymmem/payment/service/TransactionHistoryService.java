@@ -1,5 +1,8 @@
 package ariefsyaifu.gymmem.payment.service;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -105,6 +108,14 @@ public class TransactionHistoryService {
         if (!isAmountValid) {
             transactionHistoryDao.fail(th.id);
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "AMOUNT_INVALID");
+        }
+
+        LocalDate ldCreatedAt = LocalDate.ofInstant(th.createdAt, ZoneId.systemDefault());
+        LocalDate ldNow = LocalDate.ofInstant(Instant.now(), ZoneId.systemDefault());
+        boolean isSameDay = ldCreatedAt.getDayOfYear() == ldNow.getDayOfYear();
+        if (!isSameDay) {
+            transactionHistoryDao.fail(th.id);
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "NOT_SAME_DAY");
         }
 
         transactionHistoryDao.paid(th.id);

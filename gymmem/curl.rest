@@ -56,7 +56,6 @@ Content-Type: application/json
   "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SmxiV0ZwYkNJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWkNJNkltWmtNamRqTW1FMExXTTFNVEV0TkRrd01DMWhOamN5TFRoak5UTTFNVEkyWWpnellTSXNJbk4xWWlJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWVhRaU9qRTNNRFkyTXpNeE5qSXNJbVY0Y0NJNk1UY3dOall6TkRrMk1uMC5JcVc3MGxSWXQxU3l1TW54Ti1kYnlKMHZLem50QU0zcXpzYURKUk1Ub0tzIiwiaWF0IjoxNzA2NjMzMTYyLCJleHAiOjE3MDY2MzQ5NjJ9.hcnnEabs0FTOJqtUh7iX7rTyFAzXsw7Sry-Cjy2SnHY"
 }
 ###
-@token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzMxNjIsImV4cCI6MTcwNjYzNDk2Mn0.IqW70lRYt1SyuMnxN-dbyJ0vKzntAM3qzsaDJRMToKs
 ###
 POST {{baseUrl}}/api/v1/otp HTTP/1.1
 Content-Type: application/json
@@ -80,7 +79,7 @@ Content-Type: application/json
 }
 ###
 ###
-
+@token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzUwNjAsImV4cCI6MTcwNjYzNjg2MH0.JdQ4veE6SX56fW8bMjEFwrjlTrrzVDohA-3QzNPY9QU
 ###
 GET {{baseUrl}}/api/v1/user/me HTTP/1.1
 Authorization: Bearer {{token}}
@@ -158,9 +157,9 @@ Content-Type: application/json
     "type": "PAYMENT"
 }
 ###
-@transactionHistoryId=1bb72543-27e4-476f-942f-1ec3566ae732
-@otpIdPayment=8638fed3-7a69-4d8f-889f-78bb3ab3e173
-@otpValuePayment=7695
+@transactionHistoryId=506a32b4-cc7a-4f84-9874-b8b1dcc6334d
+@otpIdPayment=c1f7b494-2f3d-441e-946a-290c5a7174fb
+@otpValuePayment=5303
 ###
 PATCH {{baseUrl}}/api/v1/payment/transaction/history/{{transactionHistoryId}} HTTP/1.1
 Authorization: Bearer {{token}}
@@ -169,7 +168,7 @@ Content-Type: application/json
 {
     "otpId": "{{otpIdPayment}}",
     "otpValue": "{{otpValuePayment}}",
-    "amount": 2000000
+    "amount": 3000000
 }
 ###
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1

@@ -50,6 +50,7 @@ CREATE TABLE gym_schema.product (
 CREATE TABLE gym_schema.transaction_history (
 	id varchar(255) NOT NULL,
 	amount numeric(38, 2) NOT NULL,
+	created_at timestamptz(6) NOT NULL,
 	credit_cart_id varchar(255) NOT NULL,
 	status varchar(255) NULL,
 	subscription_id varchar(255) NOT NULL,

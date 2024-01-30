@@ -1,6 +1,9 @@
 package ariefsyaifu.gymmem.payment.model;
 
 import java.math.BigDecimal;
+import java.time.Instant;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -40,5 +43,9 @@ public class TransactionHistory {
         PAID,
         FAILED
     }
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    public Instant createdAt;
 
 }
