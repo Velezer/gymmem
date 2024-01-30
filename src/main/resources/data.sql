@@ -114,7 +114,28 @@ CREATE TABLE gym_schema."subscription" (
 	product_id varchar(255) NOT NULL,
 	CONSTRAINT subscription_pkey PRIMARY KEY (id),
 	CONSTRAINT subscription_status_check CHECK (((status)::text = ANY ((ARRAY['PENDING'::character varying, 'ACTIVE'::character varying, 'INACTIVE'::character varying])::text[]))),
+	CONSTRAINT ukoyqlmqkxsbr5nwyfyoow9d0o3 UNIQUE (user_id, product_id),
 	CONSTRAINT fkg40gg635cui0m07vh433dri4x FOREIGN KEY (product_id) REFERENCES gym_schema.product(id)
+);
+
+
+-- gym_schema."token" definition
+
+-- Drop table
+
+-- DROP TABLE gym_schema."token";
+
+CREATE TABLE gym_schema."token" (
+	id varchar(255) NOT NULL,
+	created_at timestamptz(6) NULL,
+	encrypted_access_token text NULL,
+	refresh_token text NULL,
+	updated_at timestamptz(6) NULL,
+	user_id varchar(255) NOT NULL,
+	CONSTRAINT token_pkey PRIMARY KEY (id),
+	CONSTRAINT uk_15gxur5anhs9nlx62ef6cx3sk UNIQUE (refresh_token),
+	CONSTRAINT uk_g7im3j7f0g31yhl6qco2iboy5 UNIQUE (user_id),
+	CONSTRAINT fke32ek7ixanakfqsdaokm4q9y2 FOREIGN KEY (user_id) REFERENCES gym_schema."user"(id)
 );
 
 INSERT INTO gym_schema.product

@@ -1,6 +1,7 @@
 package ariefsyaifu.gymmem.exception;
 
 import java.util.Map;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +19,7 @@ class GlobalExceptionHandler {
     private Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<Object> defaultErrorHandler(HttpServletRequest req, Exception e)
-            throws Exception {
-
+    public ResponseEntity<Object> defaultErrorHandler(HttpServletRequest req, Exception e) {
         if (e instanceof MethodArgumentNotValidException) {
             MethodArgumentNotValidException ex = (MethodArgumentNotValidException) e;
             Map<String, Object> m = Map.of(
@@ -30,11 +29,8 @@ class GlobalExceptionHandler {
 
         if (e instanceof ResponseStatusException) {
             ResponseStatusException ex = (ResponseStatusException) e;
-            // Map<String, Object> m = Map.of("message", ex.getMessage());
-            Map<String, Object> m = Map.of("message", ex.getReason());
-            if (ex.getBody() != null) {
-                m = Map.of("message", ex.getBody().getDetail());
-            }
+            String message = Optional.ofNullable(ex.getBody().getDetail()).orElse(ex.getMessage());
+            Map<String, Object> m = Map.of("message", message);
             return ResponseEntity.status(ex.getStatusCode()).body(m);
         }
         logger.error(e.getMessage(), e);

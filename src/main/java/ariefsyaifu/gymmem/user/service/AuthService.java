@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import ariefsyaifu.gymmem.client.OtpClient;
 import ariefsyaifu.gymmem.otp.model.Otp;
+import ariefsyaifu.gymmem.user.dto.auth.RefreshTokenRequestBody;
 import ariefsyaifu.gymmem.user.dto.auth.ResetRequestBody;
 import ariefsyaifu.gymmem.user.dto.auth.SignInRequestBody;
 import ariefsyaifu.gymmem.user.dto.auth.SignInResponse;
@@ -19,8 +20,10 @@ import ariefsyaifu.gymmem.user.dto.auth.SignUpRequestBody;
 import ariefsyaifu.gymmem.user.dto.auth.VerifyCheckResponse;
 import ariefsyaifu.gymmem.user.dto.auth.VerifyEmailRequestBody;
 import ariefsyaifu.gymmem.user.model.CreditCard;
+import ariefsyaifu.gymmem.user.model.Token;
 import ariefsyaifu.gymmem.user.model.User;
 import ariefsyaifu.gymmem.user.repository.CreditCardRepository;
+import ariefsyaifu.gymmem.user.repository.TokenRepository;
 import ariefsyaifu.gymmem.user.repository.UserRepository;
 import ariefsyaifu.gymmem.util.JwtUtil;
 
@@ -31,14 +34,17 @@ public class AuthService {
     public AuthService(
             CreditCardRepository creditCardRepository,
             UserRepository userRepository,
+            TokenRepository tokenRepository,
             OtpClient otpClient,
             JwtUtil jwtUtil) {
         this.creditCardRepository = creditCardRepository;
         this.userRepository = userRepository;
+        this.tokenRepository = tokenRepository;
         this.otpClient = otpClient;
         this.jwtUtil = jwtUtil;
     }
 
+    private TokenRepository tokenRepository;
     private JwtUtil jwtUtil;
     private CreditCardRepository creditCardRepository;
     private OtpClient otpClient;
@@ -99,14 +105,19 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }
 
-        String refreshToken = params.password;
-
         Map<String, Object> claims = Map.of(
                 "id", user.id,
                 "email", user.email);
 
-        String token = jwtUtil.createToken(claims, user.email);
-        return SignInResponse.valueOf(token, refreshToken);
+        String accessToken = jwtUtil.generateAccessToken(claims, user.email);
+        String refreshToken = jwtUtil.generateRefreshToken(claims, accessToken);
+
+        Token t = tokenRepository.findByUser_Id(user.id).orElse(new Token());
+        t.user = user;
+        t.encryptedAccessToken = BCrypt.hashpw(accessToken, BCrypt.gensalt());
+        t.refreshToken = refreshToken;
+        tokenRepository.save(t);
+        return SignInResponse.valueOf(accessToken, refreshToken);
     }
 
     public void reset(ResetRequestBody params) {
@@ -125,9 +136,26 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    public void refresh() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'refresh'");
+    public SignInResponse refresh(RefreshTokenRequestBody params) {
+        Token token = tokenRepository.findByRefreshToken(params.refreshToken);
+        if (token == null) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+
+        boolean isValid = BCrypt.checkpw(params.accessToken, token.encryptedAccessToken);
+        if (!isValid) {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+        }
+        User user = token.user;
+
+        Map<String, Object> claims = Map.of(
+                "id", user.id,
+                "email", user.email);
+
+        String accessToken = jwtUtil.generateAccessToken(claims, user.email);
+        tokenRepository.delete(token);
+        return SignInResponse.valueOf(accessToken, null);
+
     }
 
     public VerifyCheckResponse verifyCheck(String email) {

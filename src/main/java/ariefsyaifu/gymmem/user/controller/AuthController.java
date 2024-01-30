@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import ariefsyaifu.gymmem.user.dto.auth.RefreshTokenRequestBody;
 import ariefsyaifu.gymmem.user.dto.auth.ResetRequestBody;
 import ariefsyaifu.gymmem.user.dto.auth.SignInRequestBody;
 import ariefsyaifu.gymmem.user.dto.auth.SignInResponse;
@@ -62,9 +63,8 @@ public class AuthController {
     }
 
     @PostMapping("/refresh")
-    public ResponseEntity<Void> refresh() {
-        authService.refresh();
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<SignInResponse> refresh(@Valid @RequestBody RefreshTokenRequestBody params) {
+        return ResponseEntity.ok(authService.refresh(params));
     }
 
 }
