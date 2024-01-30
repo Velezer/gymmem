@@ -81,7 +81,8 @@ public class TransactionHistoryService {
                 params.creditCardNumber,
                 params.cvv,
                 params.expiredDate,
-                params.cardHolderName);
+                params.cardHolderName,
+                subscription.amount);
         return TransactionHistoryDto.valueOf(th);
     }
 

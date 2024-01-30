@@ -52,9 +52,11 @@ POST {{baseUrl}}/api/v1/auth/refresh HTTP/1.1
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzA3OTUsImV4cCI6MTcwNjYzMjU5NX0.R_Uuog9Q49CMVRwCVY2mALhsrN2VsJRbKEhYRHREh9A",
-  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SW1aa01qZGpNbUUwTFdNMU1URXRORGt3TUMxaE5qY3lMVGhqTlRNMU1USTJZamd6WVNJc0ltVnRZV2xzSWpvaVlYTjJaV3hsZW1WeVFHZHRZV2xzTG1OdmJTSXNJbk4xWWlJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWVhRaU9qRTNNRFkyTXpBM09UVXNJbVY0Y0NJNk1UY3dOall6TWpVNU5YMC5SX1V1b2c5UTQ5Q01WUndDVlkybUFMaHNyTjJWc0pSYktFaFlSSFJFaDlBIiwiaWF0IjoxNzA2NjMwNzk1LCJleHAiOjE3MDY2MzI1OTV9.qp1srdF0Uvl0Mzm6c8PvEZqRTMKufZ95pEzE3_89woA"
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzMxNjIsImV4cCI6MTcwNjYzNDk2Mn0.IqW70lRYt1SyuMnxN-dbyJ0vKzntAM3qzsaDJRMToKs",
+  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SmxiV0ZwYkNJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWkNJNkltWmtNamRqTW1FMExXTTFNVEV0TkRrd01DMWhOamN5TFRoak5UTTFNVEkyWWpnellTSXNJbk4xWWlJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWVhRaU9qRTNNRFkyTXpNeE5qSXNJbVY0Y0NJNk1UY3dOall6TkRrMk1uMC5JcVc3MGxSWXQxU3l1TW54Ti1kYnlKMHZLem50QU0zcXpzYURKUk1Ub0tzIiwiaWF0IjoxNzA2NjMzMTYyLCJleHAiOjE3MDY2MzQ5NjJ9.hcnnEabs0FTOJqtUh7iX7rTyFAzXsw7Sry-Cjy2SnHY"
 }
+###
+@token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzMxNjIsImV4cCI6MTcwNjYzNDk2Mn0.IqW70lRYt1SyuMnxN-dbyJ0vKzntAM3qzsaDJRMToKs
 ###
 POST {{baseUrl}}/api/v1/otp HTTP/1.1
 Content-Type: application/json
@@ -80,7 +82,6 @@ Content-Type: application/json
 ###
 
 ###
-@token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzA4MDQsImV4cCI6MTcwNjYzMjYwNH0.SSs5z2LiUNDUyTAWnkD_YAnzMjgrAvo-LlBTNte5xwY
 GET {{baseUrl}}/api/v1/user/me HTTP/1.1
 Authorization: Bearer {{token}}
 ###
@@ -103,7 +104,8 @@ GET {{baseUrl}}/api/v1/product HTTP/1.1
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1
 Authorization: Bearer {{token}}
 ###
-@productId=cb55debc-c72c-4b77-ac4b-6424bed81f11
+@productId=da44debc-c72c-4b77-ac4b-6424bed81f17
+# @productId=cb55debc-c72c-4b77-ac4b-6424bed81f11
 ###
 POST {{baseUrl}}/api/v1/subscription HTTP/1.1
 Content-Type: application/json
@@ -116,7 +118,7 @@ Authorization: Bearer {{token}}
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1
 Authorization: Bearer {{token}}
 ###
-@subscriptionId=5f36796e-47fe-4f87-a9c5-fc40564cfe61
+@subscriptionId=eb57e743-7d38-4fa8-b4ed-6a791d8c52cd
 ###
 PATCH {{baseUrl}}/api/v1/subscription/{{subscriptionId}} HTTP/1.1
 Authorization: Bearer {{token}}

@@ -1,5 +1,7 @@
 package ariefsyaifu.gymmem.producer;
 
+import java.math.BigDecimal;
+
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +21,14 @@ public class CreatedPaymentProducer {
             String creditCardNumber,
             String cvv,
             String expiredDate,
-            String cardHolderName) {
+            String cardHolderName,
+            BigDecimal amount) {
         JsonObject jo = new JsonObject();
         jo.addProperty("creditCardNumber", creditCardNumber);
         jo.addProperty("cvv", cvv);
         jo.addProperty("expiredDate", expiredDate);
         jo.addProperty("cardHolderName", cardHolderName);
+        jo.addProperty("amount", amount);
         kafkaTemplate.send("gymmem-created-payment", jo.toString());
     }
 

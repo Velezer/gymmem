@@ -13,8 +13,6 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
 import org.springframework.lang.NonNull;
 
-import jakarta.annotation.Nonnull;
-
 @Configuration
 public class KafkaProducerConfiguration {
 
