@@ -1,11 +1,14 @@
 build
 
 ```
-mvn install
+mvn install ./gymmem/
+mvn install ./payment-consumer
+mvn install ./mock
 ```
 
+run docker compose
 ```
-docker build . -t gymmem:latest
+docker-compose up
 ```
 
 don't forget to execute this sql

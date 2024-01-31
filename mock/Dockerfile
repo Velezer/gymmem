@@ -3,7 +3,6 @@ FROM maven:3.9.6-eclipse-temurin-17-alpine AS build
 WORKDIR /app
 COPY . .
 
-# RUN mvn install
 RUN mvn clean package -DskipTests
 
 FROM openjdk:17-jdk-alpine AS app

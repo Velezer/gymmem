@@ -43,10 +43,14 @@
 	</dependencies>
 
 	<build>
+		<finalName>final-app</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- <configuration>
+					<mainClass>ariefsyaifu.payment.consumer.ConsumerApplication</mainClass>
+				</configuration> -->
 			</plugin>
 		</plugins>
 	</build>
