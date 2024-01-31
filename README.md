@@ -12,3 +12,10 @@ curl
 ```
 Untuk curl cukup dari file curl.rest, sudah urut dari atas.
 ```
+
+websocket client
+```
+open sock-client.html
+inspect element
+dan pergi ke tab console
+```
