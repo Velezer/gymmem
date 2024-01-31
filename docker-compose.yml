@@ -4,6 +4,9 @@ services:
   zookeeper-0:
       image: confluentinc/cp-zookeeper:7.0.1
       container_name: zookeeper-0
+      hostname: zookeeper-0
+      ports:
+        - 2181:2181
       environment:
         ZOOKEEPER_CLIENT_PORT: 2181
         ZOOKEEPER_TICK_TIME: 2000
@@ -19,9 +22,9 @@ services:
       - zookeeper-0
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'localhost:2181'
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-0:2181
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092,PLAINTEXT_INTERNAL://broker:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://broker-0:9092,PLAINTEXT_INTERNAL://broker-0:29092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
@@ -52,7 +55,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=broker-0:9092
 
   spring-boot-app-2:
     build:
@@ -65,7 +68,7 @@ services:
       - "8081:8081"
     environment:
       - SERVER_PORT=8081
-      - SPRING_KAFKA_BOOTSTRAP_SERVERS=localhost:9092
+      - SPRING_KAFKA_BOOTSTRAP_SERVERS=broker-0:9092
       - SPRING_KAFKA_CONSUMER_GROUP_ID=payment-consumer
 
   spring-boot-app-3:

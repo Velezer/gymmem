@@ -26,8 +26,8 @@ Content-Type: application/json
     "type": "VERIFY_EMAIL"
 }
 ###
-@otpIdVerif=28cb2a0a-38c6-4d77-9854-d0ef4aff8b2b
-@otpValueVerif=7371
+@otpIdVerif=f8a82644-cf12-4513-adcc-97a0a51670da
+@otpValueVerif=1149
 ###
 PUT {{baseUrl}}/api/v1/auth/verification HTTP/1.1
 Content-Type: application/json
@@ -52,8 +52,8 @@ POST {{baseUrl}}/api/v1/auth/refresh HTTP/1.1
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2MzMxNjIsImV4cCI6MTcwNjYzNDk2Mn0.IqW70lRYt1SyuMnxN-dbyJ0vKzntAM3qzsaDJRMToKs",
-  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SmxiV0ZwYkNJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWkNJNkltWmtNamRqTW1FMExXTTFNVEV0TkRrd01DMWhOamN5TFRoak5UTTFNVEkyWWpnellTSXNJbk4xWWlJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWVhRaU9qRTNNRFkyTXpNeE5qSXNJbVY0Y0NJNk1UY3dOall6TkRrMk1uMC5JcVc3MGxSWXQxU3l1TW54Ti1kYnlKMHZLem50QU0zcXpzYURKUk1Ub0tzIiwiaWF0IjoxNzA2NjMzMTYyLCJleHAiOjE3MDY2MzQ5NjJ9.hcnnEabs0FTOJqtUh7iX7rTyFAzXsw7Sry-Cjy2SnHY"
+  "accessToken": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjQzMDA2NmU1LTg2ZDItNDI4Yi1iMWFmLWFjZjkyMzE5YjczYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2NjU2ODQsImV4cCI6MTcwNjY2NzQ4NH0.uh1yoLWYT0xAgCyMxovovdC9sap1Rrvlq1Q6YjEe3OE",
+  "refreshToken": "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6IjQzMDA2NmU1LTg2ZDItNDI4Yi1iMWFmLWFjZjkyMzE5YjczYSIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImV5SmhiR2NpT2lKSVV6STFOaUo5LmV5SnBaQ0k2SWpRek1EQTJObVUxTFRnMlpESXROREk0WWkxaU1XRm1MV0ZqWmpreU16RTVZamN6WVNJc0ltVnRZV2xzSWpvaVlYTjJaV3hsZW1WeVFHZHRZV2xzTG1OdmJTSXNJbk4xWWlJNkltRnpkbVZzWlhwbGNrQm5iV0ZwYkM1amIyMGlMQ0pwWVhRaU9qRTNNRFkyTmpVMk9EUXNJbVY0Y0NJNk1UY3dOalkyTnpRNE5IMC51aDF5b0xXWVQweEFnQ3lNeG92b3ZkQzlzYXAxUnJ2bHExUTZZakVlM09FIiwiaWF0IjoxNzA2NjY1Njg0LCJleHAiOjE3MDY2Njc0ODR9.uHvJFRtl7AwyeAsHe3J1D8-4VeRkmYzNCYPIuR0gcJ0"
 }
 ###
 ###
@@ -65,8 +65,8 @@ Content-Type: application/json
     "type": "RESET_PASSWORD"
 }
 ###
-@otpIdReset=297391f6-483e-459d-bfa8-2517755d13a6
-@otpValueReset=1542
+@otpIdReset=dca62030-2106-4884-b909-ef0fe602c3af
+@otpValueReset=2741
 ###
 PATCH {{baseUrl}}/api/v1/auth/reset HTTP/1.1
 Content-Type: application/json
@@ -79,15 +79,13 @@ Content-Type: application/json
 }
 ###
 ###
-@token=eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpZCI6ImZkMjdjMmE0LWM1MTEtNDkwMC1hNjcyLThjNTM1MTI2YjgzYSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2Mzk2MjUsImV4cCI6MTcwNjY0MTQyNX0.CNjmQ8MovfyALBfpy9Et02PIOknTRAN6THIihcn0CfM
+@token=eyJhbGciOiJIUzI1NiJ9.eyJpZCI6ImNiOTYyZGNiLWNiZTktNGJmNy05MDdlLTZkMTIwN2YzMzFiMyIsImVtYWlsIjoiYXN2ZWxlemVyQGdtYWlsLmNvbSIsInN1YiI6ImFzdmVsZXplckBnbWFpbC5jb20iLCJpYXQiOjE3MDY2Njg2NjYsImV4cCI6MTcwNjY3MDQ2Nn0.dqJD5ABw5I7Ylj5_CWQopSw6U9jDjZNSgzQ57JLUHH4
 ###
 GET {{baseUrl}}/api/v1/user/me HTTP/1.1
 Authorization: Bearer {{token}}
 ###
 GET {{baseUrl}}/api/v1/user/me/creditCard HTTP/1.1
 Authorization: Bearer {{token}}
-###
-@creditCardId=d11691ea-b110-4611-8355-a93bf2243394
 ###
 PUT {{baseUrl}}/api/v1/user/me HTTP/1.1
 Content-Type: application/json
@@ -117,7 +115,7 @@ Authorization: Bearer {{token}}
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1
 Authorization: Bearer {{token}}
 ###
-@subscriptionId=eb57e743-7d38-4fa8-b4ed-6a791d8c52cd
+@subscriptionId=ad77cacf-a769-48a2-94aa-e4af77d9bcf0
 ###
 PATCH {{baseUrl}}/api/v1/subscription/{{subscriptionId}} HTTP/1.1
 Authorization: Bearer {{token}}
@@ -132,6 +130,11 @@ Authorization: Bearer {{token}}
 ### 
 GET {{baseUrl}}/api/v1/payment/transaction/history HTTP/1.1
 Authorization: Bearer {{token}}
+###
+GET {{baseUrl}}/api/v1/user/me/creditCard HTTP/1.1
+Authorization: Bearer {{token}}
+###
+@creditCardId=4d79ef75-c237-404d-a59b-4c02d3263ea3
 ### create payment
 POST {{baseUrl}}/api/v1/payment/transaction/history HTTP/1.1
 Content-Type: application/json
@@ -174,7 +177,7 @@ Content-Type: application/json
 GET {{baseUrl}}/api/v1/subscription HTTP/1.1
 Authorization: Bearer {{token}}
 ###
-POST http://localhost:8082/api/v1/mock/payment/r5 HTTP/1.1
+POST http://localhost:8082/api/v1/mock/payment/r3 HTTP/1.1
 Content-Type: application/json
 
 {"random":{"random":"random"}}

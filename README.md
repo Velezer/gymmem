@@ -1,12 +1,4 @@
-build
-
-```
-mvn install ./gymmem/
-mvn install ./payment-consumer
-mvn install ./mock
-```
-
-run docker compose
+run docker compose to build and run app
 ```
 docker-compose up
 ```
