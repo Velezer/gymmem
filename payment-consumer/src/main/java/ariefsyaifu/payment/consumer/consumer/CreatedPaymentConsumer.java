@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -21,6 +22,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 public class CreatedPaymentConsumer {
     private Logger logger = LoggerFactory.getLogger(CreatedPaymentConsumer.class);
+
+    @Value("${mock.service.url}")
+    String mockServiceUrl;
 
     @Autowired
     public CreatedPaymentConsumer(
@@ -56,7 +60,7 @@ public class CreatedPaymentConsumer {
             throw new RuntimeException("amount invalid");
         }
 
-        Map<String, Object> r3 = RestClient.builder().baseUrl("http://localhost:8082/api/v1/mock/payment/r3").build()
+        Map<String, Object> r3 = RestClient.builder().baseUrl(mockServiceUrl + "/api/v1/mock/payment/r3").build()
                 .post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Map.of(
@@ -65,7 +69,7 @@ public class CreatedPaymentConsumer {
                 .retrieve()
                 .body(Map.class);
         logger.info("r3={}", r3);
-        Map<String, Object> r4 = RestClient.builder().baseUrl("http://localhost:8082/api/v1/mock/payment/r4").build()
+        Map<String, Object> r4 = RestClient.builder().baseUrl(mockServiceUrl + "/api/v1/mock/payment/r4").build()
                 .post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Map.of(
@@ -75,7 +79,7 @@ public class CreatedPaymentConsumer {
                 .body(Map.class);
 
         logger.info("r4={}", r4);
-        Map<String, Object> r5 = RestClient.builder().baseUrl("http://localhost:8082/api/v1/mock/payment/r5").build()
+        Map<String, Object> r5 = RestClient.builder().baseUrl(mockServiceUrl + "/api/v1/mock/payment/r5").build()
                 .post()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(Map.of(
